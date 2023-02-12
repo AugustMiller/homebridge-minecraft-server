@@ -1,0 +1,35 @@
+{
+    "pluginAlias": "MinecraftServer",
+    "pluginType": "accessory",
+    "singular": false,
+    "schema": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "title": "Server Name",
+                "type": "string",
+                "required": true
+            },
+            "host": {
+                "title": "Hostname",
+                "description": "It is advisable to set a static IP for your ESP module.",
+                "type": "string",
+                "required": true,
+                "format": "hostname"
+            },
+            "port": {
+                "title": "Port",
+                "description": "The port the server is listening on.",
+                "type": "number",
+                "required": true,
+                "default": 25565
+            },
+            "updateInterval": {
+                "title": "Update Interval",
+                "description": "Number of milliseconds between updates. Minimum value is one minute, to avoid exhausting API limits!",
+                "type": "number",
+                "required": true
+            }
+        }
+    }
+}
