@@ -1,16 +1,15 @@
 {
-    "private": true,
     "displayName": "Minecraft Server",
     "name": "homebridge-minecraft",
     "version": "0.0.1",
-    "description": "Add an occupancy sensor accessory to Homebridge for your Minecraft server",
+    "description": "Monitor activity on a Minecraft server from Homebridge",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "git://github.com/augustmiller/homebridge-minecraft.git"
+        "url": "git://github.com/AugustMiller/homebridge-minecraft-server.git"
     },
     "bugs": {
-        "url": "https://github.com/augustmiller/homebridge-minecraft/issues"
+        "url": "https://github.com/AugustMiller/homebridge-minecraft-server/issues"
     },
     "engines": {
         "node": ">=14.18.1",
@@ -19,7 +18,8 @@
     "main": "index.js",
     "scripts": {},
     "keywords": [
-        "homebridge-plugin"
+        "homebridge-plugin",
+        "minecraft"
     ],
     "dependencies": {},
     "devDependencies": {
