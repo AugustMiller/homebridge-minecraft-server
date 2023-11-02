@@ -1,5 +1,6 @@
 const REFRESH_INTERVAL = 60 * 1000;
-const API_BASE_URL = 'https://api.mcsrvstat.us/2';
+const API_BASE_URL = 'https://api.mcsrvstat.us';
+const API_VERSION = '3';
 
 /**
  * An Accessory providing visibility into the status of a minecraft server.
@@ -14,6 +15,7 @@ class MinecraftServer {
         this.name = config.name;
         this.host = config.host;
         this.port = config.port;
+        this.type = config.type;
         this.updateInterval = Math.max(REFRESH_INTERVAL, config.updateInterval);
 
         // "Occupancy Sensor" Service:
@@ -127,10 +129,27 @@ class MinecraftServer {
     }
 
     /**
-     * Performs an API request for the given host name.
+     * Performs an API request for the given server host name.
      */
     getServerStatus (host) {
-        return this.makeApiRequest(host);
+        // Build the path from an array of dynamic segments:
+        const path = [];
+
+        // Add in the prefix for Bedrock servers:
+        if (this.type === 'bedrock') {
+            path.push('bedrock');
+        }
+
+        // The API version comes next:
+        path.push(API_VERSION);
+
+        // Then the server/host we want to query for:
+        path.push(host);
+
+        this.log.debug(`Making API request to: ${path.join('/')}`);
+
+        // Combine those and issue the request:
+        return this.makeApiRequest(path.join('/'));
     }
 
     /**
@@ -138,7 +157,8 @@ class MinecraftServer {
      */
     makeApiRequest (path) {
         return fetch(`${API_BASE_URL}/${path}`)
-            .then(r => r.json());
+            .then(r => r.json())
+            .catch(err => this.log.error);
     }
 
     /**

@@ -12,7 +12,7 @@
             },
             "host": {
                 "title": "Hostname",
-                "description": "It is advisable to set a static IP for your ESP module.",
+                "description": "Where is your server located? This can be an IP or a domain name..",
                 "type": "string",
                 "required": true,
                 "format": "hostname"
@@ -23,6 +23,17 @@
                 "type": "number",
                 "required": true,
                 "default": 25565
+            },
+            "type": {
+                "title": "Server Type",
+                "description": "Different servers use different APIs. You must select the correct type for this accessory to work.",
+                "type":  "string",
+                "required": true,
+                "default": "java",
+                "oneOf": [
+                     { "title": "Java", "enum": ["java"] },
+                     { "title": "Bedrock", "enum": ["bedrock"] }
+                ]
             },
             "updateInterval": {
                 "title": "Update Interval",
