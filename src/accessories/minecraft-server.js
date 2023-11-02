@@ -30,7 +30,7 @@ class MinecraftServer {
             .on(this.api.hap.CharacteristicEventTypes.GET, (callback) => {
                 const val = this.occupancyCharacteristic.value;
 
-                this.log(`Yielding server occupancy: [${this.getOccupancyDescription(val)}]`);
+                this.log.debug(`Yielding server “${this.name}” occupancy: [${this.getOccupancyDescription(val)}]`);
 
                 callback(undefined, val);
             })
@@ -38,7 +38,7 @@ class MinecraftServer {
                 const oldDescription = this.getOccupancyDescription(change.oldValue);
                 const newDescription = this.getOccupancyDescription(change.newValue);
 
-                this.log(`Occupancy changed from ${oldDescription} to ${newDescription} in response to a “${change.reason}” event.`);
+                this.log.debug(`Occupancy of “${this.name}” changed from ${oldDescription} to ${newDescription} in response to a “${change.reason}” event.`);
             });
 
         // Fault detection:
@@ -48,7 +48,7 @@ class MinecraftServer {
             .on(this.api.hap.CharacteristicEventTypes.GET, (callback) => {
                 const val = this.faultCharacteristic.value;
 
-                this.log(`Yielding server status: [${this.getServerStatusDescription(val)}]`);
+                this.log.debug(`Yielding server “${this.name}” status: [${this.getServerStatusDescription(val)}]`);
 
                 callback(undefined, val);
             })
@@ -56,7 +56,7 @@ class MinecraftServer {
                 const oldDescription = this.getServerStatusDescription(change.oldValue);
                 const newDescription = this.getServerStatusDescription(change.newValue);
 
-                this.log(`Server whent from ${oldDescription} to ${newDescription} in response to a "${change.reason}" event.`);
+                this.log.debug(`Server “${this.name}” went from ${oldDescription} to ${newDescription} in response to a "${change.reason}" event.`);
             });
 
 
@@ -98,11 +98,9 @@ class MinecraftServer {
 
     /**
      * Queries the Minecraft Server Status API and updates characteristic values.
-     * 
-     * @see https://api.mcsrvstat.us/
      */
     updateServerStatus () {
-        this.log(`Updating Minecraft server status...`);
+        this.log.debug(`Updating status of Minecraft server “${this.name}”...`);
 
         this.getServerStatus(`${this.host}:${this.port}`)
             .then((data) => {
