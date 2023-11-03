@@ -1,7 +1,7 @@
 {
     "displayName": "Minecraft Server",
     "name": "homebridge-minecraft",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Monitor activity on a Minecraft server from Homebridge",
     "license": "Apache-2.0",
     "repository": {
