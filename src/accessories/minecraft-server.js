@@ -64,9 +64,9 @@ class MinecraftServer {
         this.informationService = new this.api.hap.Service.AccessoryInformation();
 
         this.informationService
-            .setCharacteristic(this.api.hap.Characteristic.Manufacturer, 'Carpet City')
-            .setCharacteristic(this.api.hap.Characteristic.Model, 'CC-MCSERVER')
-            .setCharacteristic(this.api.hap.Characteristic.SoftwareRevision, '0.0.1');
+            .setCharacteristic(this.api.hap.Characteristic.Manufacturer, 'oof. Studio, LLC')
+            .setCharacteristic(this.api.hap.Characteristic.Model, 'OOF-MCSERVER')
+            .setCharacteristic(this.api.hap.Characteristic.SoftwareRevision, '1.0.0');
 
         // Start the status check loop...
         setInterval(() => {
