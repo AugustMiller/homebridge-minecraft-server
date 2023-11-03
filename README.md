@@ -8,7 +8,7 @@ Failures in the API connection also set a "fault" state on the accessory.
 
 ### Status
 
-Based on the [`OccupancySensor`](https://developers.homebridge.io/#/service/OccupancySensor) service definition, and includes two Characteristics:
+An [`OccupancySensor`](https://developers.homebridge.io/#/service/OccupancySensor) service is defined, with two Characteristics:
 
 - [`OccupancyDetected`](https://developers.homebridge.io/#/characteristic/OccupancyDetected): Set to `OCCUPANCY_DETECTED` (`1`) when there is at least one player is online, or `OCCUPANCY_NOT_DETECTED` (`0`) when there are none.
 - [`StatusFault`](https://developers.homebridge.io/#/characteristic/StatusFault): Set to `GENERAL_FAULT` (`0`) when an API request fails or the server is offline, or `NO_FAULT` (`1`) when operating normally.
@@ -26,7 +26,7 @@ The plugin is set up to be configured via the Homebridge GUI, but you can also a
     "accessories": [
         {
             "name": "Minecraft Server",
-            "host": "1.2.3.4",
+            "host": "192.168.0.128",
             "port": 25565,
             "type": "java",
             "updateInterval": 60000,
@@ -37,3 +37,5 @@ The plugin is set up to be configured via the Homebridge GUI, but you can also a
 ```
 
 The `accessory` property _must_ be `MinecraftServer`, but the other values are up to you. Provide `updateInterval` in milliseconds; only values greater than one minute will be honored, so that the Minecraft Server Status API is not overwhelmed.
+
+Be sure and select the correct `type`—Java and Bedrock servers are handled separately in the API and must be queried separately.
