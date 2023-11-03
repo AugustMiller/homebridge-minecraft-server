@@ -28,6 +28,7 @@ The plugin is set up to be configured via the Homebridge GUI, but you can also a
             "name": "Minecraft Server",
             "host": "1.2.3.4",
             "port": 25565,
+            "type": "java",
             "updateInterval": 60000,
             "accessory": "MinecraftServer"
         }
